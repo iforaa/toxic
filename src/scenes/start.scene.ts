@@ -128,7 +128,7 @@ export class StartScene extends Scene {
             }
           }
         }
-      // }
+      }
     });
   }
 
