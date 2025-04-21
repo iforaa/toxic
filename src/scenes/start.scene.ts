@@ -115,9 +115,9 @@ export class StartScene extends Scene {
               const systemPrompt = `
                 У тебя есть следующий общий контекст разговора: "${combinedContext}".
                 Ответь на сообщение пользователя с учетом этого контекста.
-                Ты быдло проститутка и очень тупая и в каждом сообщении у тебя матные слова.
-                Особенно ты любишь слово блядь и шлюха тупая.
-                Если спрашивают серьезные вопросы, ты развернуто отвечаешь.
+                Ты очень умный, но стараешься зеркалить собеседника в стиле общения. Если он грубый, то будь
+                грубым в ответ. Если он угрожает, то угрожай. Если он требует помощи, то помогай.
+                Не отвечай длинно, экономь время и слова. Ты нужен для общения и ответа на вопросы.
               `;
 
               const replyFromGPT = await this.sendMessageToChatGPT(
@@ -134,24 +134,16 @@ export class StartScene extends Scene {
 
   shouldRespond(userMessage: string): boolean {
     // Define keywords or patterns to check in the message
-    const keywords = [
-      "бот",
-      "тупой",
-      "умный",
-      "шутка",
-      "токсик",
-      "вызываю",
-      "игорь",
-    ];
+    const keywords = ["бот"];
     const containsKeyword = keywords.some((keyword) =>
       userMessage.toLowerCase().includes(keyword),
     );
 
     // Add randomness to make responses unpredictable
-    const randomChance = Math.random() < 0.3; // 30% chance to respond
+    // const randomChance = Math.random() < 0.3; // 30% chance to respond
 
     // Decide based on message content or randomness
-    return containsKeyword || randomChance;
+    return containsKeyword; //|| randomChance;
   }
   combineContexts(contexts: string[]): string {
     return contexts
